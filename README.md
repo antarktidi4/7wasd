@@ -1,5 +1,5 @@
 # 7wasd
-Chromium extension that adds 7tv emotes for wasd.tv.
+Chromium extension that adds global twitch, 7tv and user 7tv emotes for wasd.tv.
 
 ## Installation
 1. clone the repo
