@@ -23,7 +23,7 @@ async function openTabListener() {
   const [tab] = await chrome.tabs.query(queryOptions);
   if (!tab.url || !WASD_URL_REGEX.test(tab.url)) return;
 
-  const [username] = url.split("/").slice(-1);
+  const [username] = tab.url.split("/").slice(-1);
   if (!username) return;
 
   const emotesInStorage = await chrome.storage.session.get([username]);

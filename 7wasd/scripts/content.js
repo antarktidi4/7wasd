@@ -16,8 +16,6 @@ const dynImport = async (path) => {
   const twtichEmotes = (await chrome.storage.session.get(["twitch"]))?.["twitch"];
   const emoteSet = Object.assign({}, userEmotes, globalEmotes, twtichEmotes);
 
-  console.log(emoteSet);
-
   const chatNode = await waitForElement(".block__messages");
   
   ChatBuilder()
