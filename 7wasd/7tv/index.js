@@ -1,18 +1,79 @@
+/**
+ * Wrapper for deprecated 7tv v2 rest API.
+ * 
+ * @class
+ */
 export default class SevenTv {
-  static __API_BASE = "https://api.7tv.app/v2";
-
-  static async getUser(username) {
-    return await this.__fetchBody(`${this.__API_BASE}/users/${username}`);
+  /**
+   * Lists active global emotes.
+   * 
+   * @async
+   * @static
+   * @function getGlobalEmotes
+   */
+  static async getGlobalEmotes() {
+    return await this.__fetchBody(`emotes/global`);
   }
 
-  static async getUserEmotes(username) {
-    return await this.__fetchBody(`${this.__API_BASE}/users/${username}/emotes`);
+  /**
+   * Find an emote by its ID.
+   * 
+   * @async
+   * @static
+   * @function getEmote
+   * @param {string} emote - emote ID.
+   */
+  static async getEmote(emote) {
+    return await this.__fetchBody(`emotes/${emoteId}`)
   }
 
-  static async __fetchBody(url) {
-    const response = await fetch(url);
-    const body = await response.json();
+  /**
+   * List the channel emotes of a user.
+   * 
+   * @async
+   * @static
+   * @function getUserEmotes
+   * @param {string} user - User ID, Twitch ID or Twitch Login.
+   */
+  static async getUserEmotes(user) {
+    return await this.__fetchBody(`users/${user}/emotes`);
+  }
 
-    return body;
+  /**
+   * Get all active cosmetics and the users assigned to them.
+   * 
+   * @async
+   * @static
+   * @function getCosmetics
+   * @param {string} user - object_id, Twitch ID or Twitch Login.
+   */
+  static async getCosmetics(user) {
+    return await this.__fetchBody(`cosmetics/user_identifier=${user}`)
+  }
+
+  /**
+   * Finds a user by its ID, Username or Twitch ID.
+   * 
+   * @async
+   * @static
+   * @function getUser
+   * @param {string} user - User ID, Username or Twitch ID.
+   */
+  static async getUser(user) {
+    return await this.__fetchBody(`users/${user}`);
+  }
+
+  /**
+   * Get parsed body from API route.
+   * 
+   * @async
+   * @static
+   * @function __fetchBody
+   * @param {string} route - API route.
+   * @private
+   */
+  static async __fetchBody(route) {
+    const response = await fetch(`https://api.7tv.app/v2/${route}`);
+    return await response.json();
   }
 }
