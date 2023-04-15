@@ -1,3 +1,5 @@
+import { log } from "../internal/logger.js";
+
 export class Chat {
   constructor(chatNode, listeners) {
     this.chatNode = chatNode;
@@ -7,6 +9,7 @@ export class Chat {
   }
 
   #setupObserver() {
+    log("Mutation observer init start");
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         mutation.addedNodes.forEach((node) => {
@@ -16,12 +19,15 @@ export class Chat {
     });
 
     observer.observe(this.chatNode, { childList: true });
+    log("Mutation observer init end");
   }
 
   #onChatLoad() {
+    log("Update existing messages start");
     this.chatNode?.childNodes?.forEach((node) => {
       this.#callCallbacks(node);
     });
+    log("Update existing messages end");
   }
 
   #callCallbacks(node) {
@@ -35,12 +41,13 @@ export class Chat {
 }
 
 export let ChatBuilder = function() {
+  let listenerCounter = 1000;
   let listeners = {};
   let chatNode;
 
   return {
-    addListener: function(id, callback) {
-      this.listeners = Object.assign({[id]: callback}, this.listeners);
+    addListener: function(callback) {
+      this.listeners = Object.assign({[listenerCounter++]: callback}, this.listeners);
       return this;
     },
     setChatNode: function(chatNode) {

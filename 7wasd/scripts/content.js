@@ -4,37 +4,28 @@ const dynImport = async (path) => {
 }
 
 (async () => {
-  const { Emote } = await dynImport("/scripts/components/emote.js");
-  const { ChatBuilder } = await dynImport("/wasd/index.js");
-  const { waitForElement } = await dynImport("/scripts/htmlUtils.js");
+  const { Storage } = await dynImport("/internal/storage.js");
+  const { ChatBuilder } = await dynImport("/scripts/wasd.js");
+  const { waitForElement, generateEmoteElement } = await dynImport("/scripts/htmlUtils.js");
+  const { log } = await dynImport("/internal/logger.js");
 
   const userNode = await waitForElement("a.user-plays--link");
   const username = userNode.innerText.trim().toLowerCase();
-
-  const userEmotes = (await chrome.storage.session.get([username]))?.[username];
-  const globalEmotes = (await chrome.storage.session.get(["global"]))?.["global"];
-  const twtichEmotes = (await chrome.storage.session.get(["twitch"]))?.["twitch"];
-  const emoteSet = Object.assign({}, userEmotes, globalEmotes, twtichEmotes);
-
+  const emoteSet = await Storage.getFullEmoteSet(username);
   const chatNode = await waitForElement(".block__messages");
-  
+
+  log(`Loaded ${Object.keys(emoteSet).length} emotes for ${username}`)
+
   ChatBuilder()
     .setChatNode(chatNode)
-    .addListener(0, (messageNode) => logMessage(messageNode))
-    .addListener(1, (messageNode) => replaceEmote(messageNode))
+    //.addListener((messageNode) => log(messageNode?.innerText))
+    .addListener((messageNode) => replaceEmote(messageNode))
     .build();
-
-
-  function logMessage(messageNode) {
-    const text = messageNode?.innerText;
-    console.log(text);
-  }
 
   function replaceEmote(messageNode) {
     const text = messageNode?.innerText;
     if (!text) return;
     messageNode.innerHTML = null;
-
 
     text?.split(" ").forEach((word) => {
       const emote = emoteSet?.[word];
@@ -42,8 +33,7 @@ const dynImport = async (path) => {
       if (!emote) {
         messageNode.insertAdjacentHTML("beforeend", word + " ");
       } else {
-        const emoteElement = Emote(emote);
-        messageNode.appendChild(emoteElement);
+        messageNode.appendChild(generateEmoteElement(emote));
       }
     });
   }

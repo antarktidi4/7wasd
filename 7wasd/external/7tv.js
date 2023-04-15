@@ -3,7 +3,7 @@
  * 
  * @class
  */
-export default class SevenTv {
+export class SevenTv {
   /**
    * Lists active global emotes.
    * 
@@ -21,7 +21,7 @@ export default class SevenTv {
    * @async
    * @static
    * @function getEmote
-   * @param {string} emote - emote ID.
+   * @param {String} emote - emote ID.
    */
   static async getEmote(emote) {
     return await this.__fetchBody(`emotes/${emoteId}`)
@@ -33,7 +33,7 @@ export default class SevenTv {
    * @async
    * @static
    * @function getUserEmotes
-   * @param {string} user - User ID, Twitch ID or Twitch Login.
+   * @param {String} user - User ID, Twitch ID or Twitch Login.
    */
   static async getUserEmotes(user) {
     return await this.__fetchBody(`users/${user}/emotes`);
@@ -45,7 +45,7 @@ export default class SevenTv {
    * @async
    * @static
    * @function getCosmetics
-   * @param {string} user - object_id, Twitch ID or Twitch Login.
+   * @param {String} user - object_id, Twitch ID or Twitch Login.
    */
   static async getCosmetics(user) {
     return await this.__fetchBody(`cosmetics/user_identifier=${user}`)
@@ -57,7 +57,7 @@ export default class SevenTv {
    * @async
    * @static
    * @function getUser
-   * @param {string} user - User ID, Username or Twitch ID.
+   * @param {String} user - User ID, Username or Twitch ID.
    */
   static async getUser(user) {
     return await this.__fetchBody(`users/${user}`);
@@ -69,7 +69,7 @@ export default class SevenTv {
    * @async
    * @static
    * @function __fetchBody
-   * @param {string} route - API route.
+   * @param {String} route - API route.
    * @private
    */
   static async __fetchBody(route) {
