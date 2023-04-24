@@ -1,0 +1,69 @@
+{
+  "name": "7wasd",
+  "description": "Twitch and 7tv emotes for wasd.tv.",
+  "version": "4.25.23",
+  "author": "hash",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antarktidi4/7wasd"
+  },
+  "scripts": {
+    "start:chrome": "xt-build -e dev -p chrome -w",
+    "start:firefox": "xt-build -e dev -p firefox -w",
+    "build:chrome": "xt-build -e prod -p chrome",
+    "build:firefox": "xt-build -e prod -p firefox",
+    "clean": "xt-clean",
+    "docs": "xt-docs",
+    "test": "xt-test",
+    "coverage": "nyc --reporter=lcov npm run test",
+    "sync": "xt-sync"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      [
+        "htm",
+        {
+          "import": "htm/preact"
+        }
+      ]
+    ]
+  },
+  "eslintIgnore": [
+    "test/**/*"
+  ],
+  "dependencies": {
+    "preact": "10.13.2"
+  },
+  "devDependencies": {
+    "babel-plugin-htm": "3.0.0",
+    "htm": "3.1.1",
+    "extension-cli": "latest"
+  },
+  "xtdocs": {
+    "source": {
+      "include": [
+        "README.md",
+        "src"
+      ]
+    }
+  },
+  "xtbuild": {
+    "js_bundles": [
+      {
+        "name": "background",
+        "src": "./src/background.js"
+      },
+      {
+        "name": "content",
+        "src": "./src/scripts/content.js"
+      },
+      {
+        "name": "popup",
+        "src": "./src/popup/popup.js"
+      }
+    ]
+  }
+}

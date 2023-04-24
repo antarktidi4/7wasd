@@ -1,6 +1,13 @@
-import { log } from "../internal/logger.js";
+import { log } from "./logger.js";
 
-// https://stackoverflow.com/a/61511955/20827007
+/**
+ * Function that waits until element appears on a page.
+ * 
+ * https://stackoverflow.com/a/61511955/20827007
+ * 
+ * @param {String} selector - Node selector
+ * @returns {Node?} Node
+ */
 export function waitForElement(selector) {
   log(`Waiting element ${selector}`);
   return new Promise(resolve => {
@@ -20,15 +27,4 @@ export function waitForElement(selector) {
       subtree: true
     });
   });
-}
-
-export function generateEmoteElement(emote) {
-  const emoteElement = document.createElement("img");
-  emoteElement.setAttribute("alt", emote.name);
-  emoteElement.src = emote.urls[0][1];
-  emoteElement.style.height = `28px`;
-  emoteElement.style.margin = "-0.5rem 0";
-  emoteElement.style.position = "relative";
-
-  return emoteElement;
 }
