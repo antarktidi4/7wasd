@@ -22,8 +22,8 @@ This extension was created with [Extension CLI](https://oss.mobilefirst.me/exten
 
 | Commands | Description |
 | --- | --- |
-| `npm run start:{chrome|firefox}` | build extension, watch file changes |
-| `npm run build:{chrome|firefox}` | generate release version |
+| `npm run start:{chrome\|firefox}` | build extension, watch file changes |
+| `npm run build:{chrome\|firefox}` | generate release version |
 | `npm run docs` | generate source code docs |
 | `npm run clean` | remove temporary files |
 | `npm run test` | run unit tests |
