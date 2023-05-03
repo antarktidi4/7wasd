@@ -1,7 +1,7 @@
 {
   "name": "7wasd",
   "description": "Twitch and 7tv emotes for wasd.tv.",
-  "version": "4.25.23",
+  "version": "5.3.23",
   "author": "hash",
   "repository": {
     "type": "git",
@@ -58,7 +58,7 @@
       },
       {
         "name": "content",
-        "src": "./src/scripts/content.js"
+        "src": "./src/content/content.js"
       },
       {
         "name": "popup",

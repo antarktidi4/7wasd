@@ -2,7 +2,7 @@
   "name": "__MSG_appName__",
   "short_name": "__MSG_appShortName__",
   "description": "__MSG_appDescription__",
-  "version": "4.25.23",
+  "version": "5.3.23",
   "manifest_version": 3,
   "default_locale": "en",
   "icons": {
@@ -24,11 +24,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": [
-        "/external/*",
-        "/internal/*",
-        "/scripts/*"
-      ],
+      "resources": ["/*"],
       "matches": ["https://*.wasd.tv/*"]
     }
   ],

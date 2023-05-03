@@ -18,6 +18,9 @@ Opera and Safari do not count as browsers.
 ## Development 
 This extension was created with [Extension CLI](https://oss.mobilefirst.me/extension-cli/)
 
+### Node.js version
+18.15.0
+
 ### Available Commands
 
 | Commands | Description |
