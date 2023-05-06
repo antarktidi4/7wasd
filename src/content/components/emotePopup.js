@@ -1,17 +1,17 @@
-import { useMemo } from "preact/hooks";
+import { useState, useMemo } from "preact/hooks";
 import { html } from "htm/preact";
 import { Emote } from "./emote.js";
 
 
 export function EmotePopup({emoteSetValues}) {
   const textBoxNode = document.getElementById("text-box-7wasd");
+  const fullEmoteSetNodes = useMemo(() => emoteSetValues.map(emote => html`<${Emote} emote=${emote} onClick=${onEmoteClick} />`), [emoteSetValues]);
+  const [getEmoteNodes, setEmoteNodes] = useState(fullEmoteSetNodes);
 
-  const memorizedEmoteSet = useMemo(
-    () => emoteSetValues.map(
-        emote => html`<${Emote} emote=${emote} onClick=${onEmoteClick} />`
-      ),
-    [emoteSetValues]
-  );
+  function filterEmoteSet(search) {
+    const filtred = fullEmoteSetNodes.filter(emote => emote.props.emote.name.toLowerCase().includes(search.toLowerCase()));
+    setEmoteNodes(filtred);
+  }
 
   function onEmoteClick(param) {
     // TODO: somehow fire input event that will pretend to be a user input event
@@ -19,5 +19,10 @@ export function EmotePopup({emoteSetValues}) {
     textBoxNode.innerText += ` ${param.srcElement.alt} `;
   }
 
-  return html`<div class="sevenwasd-popup">${memorizedEmoteSet}</div>`;
+  return html`
+      <div class="sevenwasd-popup">
+        <input class="sevenwasd-input" placeholder="search emote..." onInput=${e => filterEmoteSet(e.target.value)} />
+        <div>${getEmoteNodes}</div>
+      </div>
+    `;
 }

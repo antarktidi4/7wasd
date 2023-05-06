@@ -2,7 +2,7 @@
 
 .sevenwasd-emote {
   position: relative;
-  margin: -.5rem 0;
+  margin: -1rem 0;
   padding-right: 4px;
   height: 28px;
 }
@@ -14,20 +14,29 @@
   width: 305px;
   height: 250px;
 
-  background: #141820;
-  border: 2px solid #1a202c;
+  background: var(--wasd-color-second);
+  border: 2px solid var(--wasd-color-corp-prime);
 
   overflow: auto;
   word-break: break-word;
 }
 
 .sevenwasd-popup-button {
-  color: #979ba1;
-  background: #1a212d;
+  color: var(--wasd-color-corp-gray);
+  background: var(--color-first-layer);
   border: none;
 }
 
 .sevenwasd-popup .sevenwasd-emote {
   padding: 2px;
   margin: 1px;
+}
+
+.sevenwasd-popup .sevenwasd-input {
+  width: 270px;
+  margin-bottom: 10px;
+
+  color: white;
+  background-color: var(--wasd-color-second);
+  border: 2px solid var(--wasd-color-corp-prime);
 }
