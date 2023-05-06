@@ -14,9 +14,11 @@ export function EmotePopup({emoteSetValues}) {
   }
 
   function onEmoteClick(param) {
-    // TODO: somehow fire input event that will pretend to be a user input event
     if (!textBoxNode || !param?.srcElement?.alt) return;
     textBoxNode.innerText += ` ${param.srcElement.alt} `;
+    
+    const event = new InputEvent("input", {"data": param.srcElement.alt, "inputType": "insertText", "dataTransfer": null, "isComposing": false})
+    textBoxNode.dispatchEvent(event, { "bubbles": true });
   }
 
   return html`
