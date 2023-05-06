@@ -1,0 +1,33 @@
+/* sevenwasd-* prefix to avoidcollisions */
+
+.sevenwasd-emote {
+  position: relative;
+  margin: -.5rem 0;
+  padding-right: 4px;
+  height: 28px;
+}
+
+.sevenwasd-popup {
+  position: absolute;
+  bottom: 50px;
+  padding: 10px;
+  width: 305px;
+  height: 250px;
+
+  background: #141820;
+  border: 2px solid #1a202c;
+
+  overflow: auto;
+  word-break: break-word;
+}
+
+.sevenwasd-popup-button {
+  color: #979ba1;
+  background: #1a212d;
+  border: none;
+}
+
+.sevenwasd-popup .sevenwasd-emote {
+  padding: 2px;
+  margin: 1px;
+}

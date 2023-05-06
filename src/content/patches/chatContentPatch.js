@@ -1,7 +1,8 @@
-import { waitForElement } from "../../internal/utils.js";
-import { ChatBuilder } from "../../internal/wasd.js";
 import { html } from "htm/preact";
 import { render } from "preact";
+import { waitForElement } from "../../internal/utils.js";
+import { ChatBuilder } from "../../internal/wasd.js";
+import { Emote } from "../components/emote.js";
 
 export async function patchChatContent(emoteSet) {
   const chatNode = await waitForElement(".block__messages");
@@ -19,7 +20,7 @@ function replaceEmote(messageNode, emoteSet) {
     if (!emote) {
       return html`${word} `;
     } else {
-      return html`<img src=${emote.urls[0][1]} alt=${emote.name} style="height:28px;margin:-.5rem 0;padding-right:4px;position:relative;"></img>`;
+      return html`<${Emote} emote=${emote} />`;
     }
   });
 

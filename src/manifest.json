@@ -19,7 +19,8 @@
     {
       "js": ["/content.js"],
       "run_at": "document_end",
-      "matches": ["https://*.wasd.tv/*"]
+      "matches": ["https://*.wasd.tv/*"],
+      "css": ["/content.css"]
     }
   ],
   "web_accessible_resources": [

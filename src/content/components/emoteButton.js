@@ -1,6 +1,6 @@
 import { useState } from "preact/hooks";
 import { html } from "htm/preact";
-import { EmotePopup } from "./emotePopup";
+import { EmotePopup } from "./emotePopup.js";
 
 export function EmoteButton({emoteSetValues}) {
   const [getOpenState, setOpenState] = useState(false);
@@ -10,6 +10,6 @@ export function EmoteButton({emoteSetValues}) {
   }
 
   return html`${ getOpenState && html`<${EmotePopup} emoteSetValues=${emoteSetValues} />` }
-    <button onclick=${onPopupButtonClick} style="background:#1a212d;border:none;color:#979ba1;">𝙀</button>
+    <button onclick=${onPopupButtonClick} class="sevenwasd-popup-button">𝙀</button>
   `;
 }

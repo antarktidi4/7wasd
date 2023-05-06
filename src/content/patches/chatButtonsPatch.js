@@ -1,7 +1,7 @@
-import { waitForElement } from "../../internal/utils.js";
-import { EmoteButton } from "../components/emoteButton.js";
 import { html } from "htm/preact";
 import { render } from "preact";
+import { waitForElement } from "../../internal/utils.js";
+import { EmoteButton } from "../components/emoteButton.js";
 
 export async function patchButtonList(emoteSetValues) {
   const chatButtonListNode = await waitForElement("#chat-footer-block > div.footer__icons");

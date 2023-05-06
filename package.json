@@ -64,6 +64,9 @@
         "name": "popup",
         "src": "./src/popup/popup.js"
       }
+    ],
+    "copyAsIs": [
+      "./src/content/content.css"
     ]
   }
 }
