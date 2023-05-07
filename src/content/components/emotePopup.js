@@ -2,7 +2,6 @@ import { useState, useMemo } from "preact/hooks";
 import { html } from "htm/preact";
 import { Emote } from "./emote.js";
 
-
 export function EmotePopup({emoteSetValues}) {
   const textBoxNode = document.getElementById("text-box-7wasd");
   const fullEmoteSetNodes = useMemo(() => emoteSetValues.map(emote => html`<${Emote} emote=${emote} onClick=${onEmoteClick} />`), [emoteSetValues]);

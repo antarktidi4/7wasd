@@ -14,7 +14,6 @@ export async function patchChatTextBox(emoteNameSet) {
     textBeforeSelection = textBeforeSelection.substring(0, textBeforeSelection.length - selectedWord.length);
     if (!selectedWord) return;
 
-    // TODO: replace `find()` with `filter()` and add a emote wheel like in 7tv.
     const emote = emoteNameSet.find(emote => emote?.toLowerCase()?.startsWith(selectedWord?.toLowerCase()));
     if (!emote) return;
 

@@ -1,6 +1,10 @@
 import { html } from "htm/preact";
 import { render } from "preact";
+import { PopupContent } from "./components/popupContent.js";
 
 (async () => {
-  render(html`<iframe width="420" height="315" src="https://www.youtube.com/embed/PkT0PJwy8mI?autoplay=1&loop=1&controls=0"></iframe>`, document.getElementById("app"))
+  const app = document.getElementById("app");
+  const emoteSets = await chrome.storage.local.get();
+  
+  render(html`<${PopupContent} emoteSets=${emoteSets}/>`, app);
 })();

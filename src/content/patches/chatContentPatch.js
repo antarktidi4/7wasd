@@ -9,11 +9,11 @@ export async function patchChatContent(emoteSet) {
 
   Chat.builder()
     .setChatNode(chatNode)
-    .addListener((messageNode) => replaceEmote(messageNode, emoteSet))
+    .addListener((messageNode) => replaceEmotes(messageNode, emoteSet))
     .build();
 }
 
-function replaceEmote(messageNode, emoteSet) {
+function replaceEmotes(messageNode, emoteSet) {
   const newContent = messageNode?.innerText?.split(" ").map((word) => {
     const emote = emoteSet?.[word];
 
