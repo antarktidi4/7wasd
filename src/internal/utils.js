@@ -8,7 +8,7 @@ import { log } from "./logger.js";
  * @param {String} selector - Node selector
  * @returns {Node?} Node
  */
-export function waitForElement(selector, timeout = 3000) {
+export function waitForElement(selector, timeout = 10000) {
   log(`Waiting element ${selector}`);
 
   return new Promise((resolve, reject) => {
