@@ -8,9 +8,12 @@ import { log } from "./logger.js";
  * @param {String} selector - Node selector
  * @returns {Node?} Node
  */
-export function waitForElement(selector) {
+export function waitForElement(selector, timeout = 3000) {
   log(`Waiting element ${selector}`);
-  return new Promise(resolve => {
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => reject(new Error(`{"waitForElement": "${timeout}ms timeout is over. Selector: ${selector}."}`)), timeout);
+
     if (document.querySelector(selector)) {
       return resolve(document.querySelector(selector));
     }
