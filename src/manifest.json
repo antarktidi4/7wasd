@@ -23,12 +23,6 @@
       "css": ["/content.css"]
     }
   ],
-  "web_accessible_resources": [
-    {
-      "resources": ["/*"],
-      "matches": ["https://*.wasd.tv/*"]
-    }
-  ],
   "permissions": [
     "activeTab",
     "tabs",

@@ -10,7 +10,7 @@ import { patchChatTextBox } from "./patches/chatTextBoxPatch.js";
     const username = userNode.innerText.trim().toLowerCase();
     const emoteSet = await chrome.runtime.sendMessage({type: "get_full_set", username});
 
-    if (!!emoteSet?.error) log(emoteSet.error);
+    if (emoteSet?.error) throw new Error(JSON.stringify(emoteSet.error));
     log(`Loaded ${Object.keys(emoteSet).length} emotes`);
   
     await patchChatContent(emoteSet);

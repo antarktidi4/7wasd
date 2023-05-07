@@ -9,7 +9,8 @@ export function EmoteButton({emoteSetValues}) {
     setOpenState(!getOpenState);
   }
 
-  return html`${ getOpenState && html`<${EmotePopup} emoteSetValues=${emoteSetValues} />` }
-    <button onclick=${onPopupButtonClick} class="sevenwasd-popup-button">𝙀</button>
-  `;
+  return html`
+      ${getOpenState && html`<${EmotePopup} emoteSetValues=${emoteSetValues} />`}
+      <button onclick=${onPopupButtonClick} class="sevenwasd-popup-button">𝙀</button>
+    `;
 }

@@ -9,9 +9,10 @@ export function log(text) {
   console.log(`%c[7wasd][${filename}]`, "background: #7532a8; border-radius: 4px; font-weight: bold; padding: 3px;", text);
 }
 
-// https://stackoverflow.com/a/66842927/20827007
 /**
  * Function that returns a file path where it called.
+ * 
+ * https://stackoverflow.com/a/66842927/20827007
  * 
  * @function _getCallerFile
  * @returns {String} File path
