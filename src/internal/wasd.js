@@ -14,6 +14,42 @@ export class Chat {
   }
 
   /**
+   * Chat builder method.
+   * 
+   * @example
+   * const chatNode = await waitForElement(".block__messages");
+   * 
+   * const chat = Chat.builder()
+   *  .setChatNode(chatNode)
+   *  .addListener(() => console.log("new message"))
+   *  .addListener((messageNode) => log(messageNode?.innerText))
+   *  .build();
+   * 
+   * @static
+   * @method builder
+   * @returns {this} Chat class
+   */
+  static builder() {
+    let listenerCounter = 1000;
+    let listeners = {};
+    let chatNode;
+  
+    return {
+      addListener: function(callback) {
+        this.listeners = Object.assign({[listenerCounter++]: callback}, this.listeners);
+        return this;
+      },
+      setChatNode: function(chatNode) {
+        this.chatNode = chatNode;
+        return this;
+      },
+      build: function() {
+        return new Chat(this.chatNode, this.listeners);
+      }
+    };
+  };
+
+  /**
    * Method that setting up mutation observer. On any mutation checks if it message node and fires callbacks on it.
    * 
    * @private
@@ -63,36 +99,3 @@ export class Chat {
     });
   }
 }
-
-/**
- * Chat builder function.
- * 
- * @example
- * const chat = ChatBuilder()
- *  .setChatNode(await waitForElement(".block__messages"))
- *  .addListener(() => console.log("new message"))
- *  .addListener((messageNode) => log(messageNode?.innerText))
- *  .build();
- * 
- * @function ChatBuilder
- * @returns {Chat} Chat class
- */
-export let ChatBuilder = function() {
-  let listenerCounter = 1000;
-  let listeners = {};
-  let chatNode;
-
-  return {
-    addListener: function(callback) {
-      this.listeners = Object.assign({[listenerCounter++]: callback}, this.listeners);
-      return this;
-    },
-    setChatNode: function(chatNode) {
-      this.chatNode = chatNode;
-      return this;
-    },
-    build: function() {
-      return new Chat(this.chatNode, this.listeners);
-    }
-  };
-};

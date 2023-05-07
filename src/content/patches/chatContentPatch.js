@@ -1,13 +1,13 @@
 import { html } from "htm/preact";
 import { render } from "preact";
 import { waitForElement } from "../../internal/utils.js";
-import { ChatBuilder } from "../../internal/wasd.js";
+import { Chat } from "../../internal/wasd.js";
 import { Emote } from "../components/emote.js";
 
 export async function patchChatContent(emoteSet) {
   const chatNode = await waitForElement(".block__messages");
 
-  ChatBuilder()
+  Chat.builder()
     .setChatNode(chatNode)
     .addListener((messageNode) => replaceEmote(messageNode, emoteSet))
     .build();
