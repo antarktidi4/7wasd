@@ -6,7 +6,7 @@ import { log } from "./logger.js";
  * https://stackoverflow.com/a/61511955/20827007
  * 
  * @param {String} selector - Node selector
- * @param {Number} timeout - timeout (default = 10000ms/10s)
+ * @param {Number} timeout - timeout (default = 10000ms/10s) :3
  * @returns {Node?} Node
  */
 export function waitForElement(selector, timeout = 10000) {
